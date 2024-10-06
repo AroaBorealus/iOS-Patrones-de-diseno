@@ -7,25 +7,32 @@
 
 import Foundation
 
+struct CharacterDetailInfo: Equatable{
+    var character: DBCharacter
+    var hasTransformations: Bool = false
+}
+
 enum CharacterDetailStates: Equatable {
     case loading
-    case ready(character: DBCharacter)
+    case ready(character: CharacterDetailInfo)
     case error(reason: String)
 }
 
 final class CharacterDetailModel {
-    let useCase: GetCharacterUseCaseContract
+    let characterUseCase: GetCharacterUseCaseContract
+    let transformationsUseCase: GetAllTransformationsUseCaseContract
     let characterInfo: CharacterInfo
     var onStateChanged =  Binding<CharacterDetailStates>()
     
-    init(_ useCase: GetCharacterUseCaseContract, _ characterInfo: CharacterInfo) {
-        self.useCase = useCase
+    init(_ characterUseCase: GetCharacterUseCaseContract,_ transformationsUseCase: GetAllTransformationsUseCaseContract, _ characterInfo: CharacterInfo) {
+        self.characterUseCase = characterUseCase
+        self.transformationsUseCase = transformationsUseCase
         self.characterInfo = characterInfo
     }
     
     func load(){
         onStateChanged.update(.loading)
-        useCase.execute(characterInfo.characterName) { [weak self] result in
+        characterUseCase.execute(characterInfo.characterName) { [weak self] result in
             switch result {
             case .success(let characters):
                 guard let charId = self?.characterInfo.characterId else {
@@ -39,8 +46,25 @@ final class CharacterDetailModel {
                     self?.onStateChanged.update(.error(reason: "Character not found by ID"))
                     return
                 }
-                self?.onStateChanged.update(.ready(character: foundCharacter))
                 
+                self?.transformationsUseCase.execute(foundCharacter.id) { [weak self] result in
+                    switch result {
+                    case .success(let transformations):
+                        var characterInfo = CharacterDetailInfo(character: foundCharacter)
+                        if let unwrappedTransformations = transformations {
+                            characterInfo.hasTransformations = !unwrappedTransformations.isEmpty
+                            self?.onStateChanged.update(.ready(character: characterInfo))
+                            return
+                        }
+                        characterInfo.hasTransformations = false
+                        self?.onStateChanged.update(.ready(character: characterInfo))
+                    case .failure:
+                        var characterInfo = CharacterDetailInfo(character: foundCharacter)
+                        characterInfo.hasTransformations = false
+                        self?.onStateChanged.update(.ready(character: characterInfo))
+                    }
+                    
+                }
             case .failure(let error):
                 self?.onStateChanged.update(.error(reason: error.reason))
             }

@@ -1,5 +1,5 @@
 //
-//  DBCharacter.swift
+//  DBTransformations.swift
 //  AppPatronesAroa
 //
 //  Created by Aroa Miguel Garcia on 6/10/24.
@@ -7,30 +7,29 @@
 
 import Foundation
 
-struct DBCharacter: DBUnit{
+struct DBTransformation: DBUnit{
     var name: String
     var photo: String
     var id: String
     var description: String
-    let favorite: Bool
+    let hero: Dictionary<String,String>
 }
 
-// Este es un ejemplo de como usar Coding Keys
-
-struct CustomCodableCharacter: Codable {
+struct CustomCodableTransformation: Codable {
     let nombreCompleto: String
     let fotoURL: String
     let id: String
     let descripcion: String
-    let favorito: Bool
+    let hero: Dictionary<String,String>
 }
 
-extension CustomCodableCharacter {
+extension CustomCodableTransformation {
     enum CodingKeys: String, CodingKey {
         case nombreCompleto = "name"
         case fotoURL = "photo"
         case id = "id"
         case descripcion = "description"
-        case favorito = "favorite"
+        case hero = "hero"
     }
 }
+

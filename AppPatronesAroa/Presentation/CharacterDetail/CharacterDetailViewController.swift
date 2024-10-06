@@ -41,8 +41,8 @@ class CharacterDetailViewController: UIViewController {
             switch state {
             case .loading:
                 self?.caseLoading()
-            case .ready(let selectedCharacter):
-                self?.caseReady(selectedCharacter)
+            case .ready(let characterDetailInfo):
+                self?.caseReady(characterDetailInfo)
             case .error(let reason):
                 self?.caseError(reason)
             }
@@ -58,16 +58,16 @@ class CharacterDetailViewController: UIViewController {
         transformationsButton.isHidden = true
     }
     
-    private func caseReady(_ selectedCharacter: DBCharacter) {
+    private func caseReady(_ characterDetailInfo: CharacterDetailInfo) {
         activityIndicator.stopAnimating()
         characterImage.isHidden = false
         characterDescription.isHidden = false
         characterName.isHidden = false
-        transformationsButton.isHidden = false
+        transformationsButton.isHidden = !characterDetailInfo.hasTransformations
         
-        characterName.text = selectedCharacter.name
-        characterDescription.text = selectedCharacter.description
-        characterImage.setImage(selectedCharacter.photo)
+        characterName.text = characterDetailInfo.character.name
+        characterDescription.text = characterDetailInfo.character.description
+        characterImage.setImage(characterDetailInfo.character.photo)
     }
     
     private func caseError(_ reason: String) {
@@ -77,7 +77,8 @@ class CharacterDetailViewController: UIViewController {
     }
     
     @IBAction func onTransformationsButtonTapped(_ sender: UIButton) {
-
+        let charID = viewModel.characterInfo.characterId
+        self.navigationController?.show(TransformationsListBuilder(charID).build(), sender: nil)
     }
     
     @IBAction func onRetryButtonTapped(_ sender: UIButton) {

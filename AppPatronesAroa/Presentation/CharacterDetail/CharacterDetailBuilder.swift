@@ -16,8 +16,9 @@ final class CharacterDetailBuilder {
     }
     
     func build() -> UIViewController{
-        let useCase = GetCharacterUseCase()
-        let viewModel = CharacterDetailModel(useCase, characterInfo)
+        let characterUseCase = GetCharacterUseCase()
+        let transformationsUseCase = GetAllTransformationsUseCase()
+        let viewModel = CharacterDetailModel(characterUseCase, transformationsUseCase, characterInfo)
         let viewController = CharacterDetailViewController(viewModel)
         viewController.modalPresentationStyle = .fullScreen
         return viewController
