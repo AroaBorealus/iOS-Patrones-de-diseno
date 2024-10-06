@@ -56,7 +56,7 @@
                                     <rect key="frame" x="0.0" y="173.33333333333331" width="321" height="34.333333333333343"/>
                                     <color key="tintColor" name="AccentColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Login"/>
                                     <connections>
                                         <action selector="onLoginButtonTapped:" destination="-1" eventType="touchUpInside" id="IJO-y7-qwA"/>
                                     </connections>

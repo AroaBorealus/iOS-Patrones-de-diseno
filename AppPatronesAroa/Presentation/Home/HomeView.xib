@@ -32,19 +32,19 @@
                     <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                 </activityIndicatorView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5GA-ax-ubI">
-                    <rect key="frame" x="159" y="398.66666666666669" width="75" height="54.666666666666686"/>
+                    <rect key="frame" x="164.33333333333334" y="398.66666666666669" width="64.666666666666657" height="54.666666666666686"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbv-CH-de0" userLabel="errorLabel">
-                            <rect key="frame" x="0.0" y="0.0" width="75" height="20.333333333333332"/>
+                            <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="20.333333333333332"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTj-9j-Lao" userLabel="retryButton">
-                            <rect key="frame" x="0.0" y="20.333333333333318" width="75" height="34.333333333333343"/>
+                            <rect key="frame" x="0.0" y="20.333333333333318" width="64.666666666666671" height="34.333333333333343"/>
                             <color key="tintColor" name="AccentColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Retry"/>
                             <connections>
                                 <action selector="onRetryButtonTapped:" destination="-1" eventType="touchUpInside" id="968-tJ-cfi"/>
                             </connections>
