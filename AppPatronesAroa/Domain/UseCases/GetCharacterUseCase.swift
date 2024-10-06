@@ -8,14 +8,14 @@
 import Foundation
 
 protocol GetCharacterUseCaseContract{
-    func execute(_ character: String, completion: @escaping (Result<[DBCharacter]?,GetCharacterUseCaseError>) -> Void)
+    func execute(_ characterName: String, completion: @escaping (Result<[DBCharacter]?,GetCharacterUseCaseError>) -> Void)
 }
 
 
 final class GetCharacterUseCase: GetCharacterUseCaseContract{
-    func execute(_ character: String, completion: @escaping (Result<[DBCharacter]?, GetCharacterUseCaseError>) -> Void) {
+    func execute(_ characterName: String, completion: @escaping (Result<[DBCharacter]?, GetCharacterUseCaseError>) -> Void) {
         
-        GetCharactersAPIRequest(characterName: character).perform { result in
+        GetCharactersAPIRequest(characterName: characterName).perform { result in
             do {
                 try completion(.success(result.get()))
             } catch {

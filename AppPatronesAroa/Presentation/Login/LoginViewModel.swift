@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoginState {
+enum LoginState: Equatable {
     case logging
     case error(reason: String)
     case ready

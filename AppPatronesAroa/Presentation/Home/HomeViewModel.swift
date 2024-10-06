@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HomeStates {
+enum HomeStates: Equatable {
     case loading
     case ready
     case error(reason: String)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CharacterDetailStates {
+enum CharacterDetailStates: Equatable {
     case loading
     case ready(character: DBCharacter)
     case error(reason: String)

@@ -53,6 +53,6 @@ final class LoginUseCase: LoginUseCaseContract{
     }
 }
 
-struct LoginUseCaseError: Error {
+struct LoginUseCaseError: Error, Equatable{
     let reason: String
 }
