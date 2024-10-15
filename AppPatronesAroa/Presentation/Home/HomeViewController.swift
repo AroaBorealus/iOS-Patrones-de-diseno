@@ -101,7 +101,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let characterFound = viewModel.characters[indexPath.row]
         let characterInfo = CharacterInfo(characterName: characterFound.name, characterId: characterFound.id)
         self.navigationController?.show(CharacterDetailBuilder(characterInfo).build(), sender: nil)
-//        self.present(CharacterDetailBuilder(characterInfo).build(), animated: true)
     }
     
     

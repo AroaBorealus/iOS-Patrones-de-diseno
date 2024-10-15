@@ -32,7 +32,6 @@ final class LoginUseCase: LoginUseCaseContract{
             return
         }
         
-//        completion(.success("aqui ira el token"))
         LoginAPIRequest(credentials: credentials).perform { [weak self] result in
             switch result {
             case .success(let token):

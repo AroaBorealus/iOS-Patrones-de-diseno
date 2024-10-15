@@ -70,8 +70,3 @@ class LoginViewController: UIViewController {
         viewModel.login(emailTextField.text, passwordTextField.text)
     }
 }
-
-
-//#Preview{
-//    LoginBuilder().build()
-//}

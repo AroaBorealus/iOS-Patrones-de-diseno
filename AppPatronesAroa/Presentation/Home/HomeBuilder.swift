@@ -12,7 +12,6 @@ final class HomeBuilder {
         let useCase = GetAllCharactersUseCase()
         let viewModel = HomeViewModel(useCase)
         let viewController = HomeViewController(viewModel)
-//        viewController.modalPresentationStyle = .fullScreen
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
         

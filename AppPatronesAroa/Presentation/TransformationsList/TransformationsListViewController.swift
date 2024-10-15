@@ -99,6 +99,5 @@ class TransformationsListViewController: UIViewController, UITableViewDataSource
         }
         let transformationFound = viewModel.transformations[indexPath.row]
         self.navigationController?.show(TransformationDetailBuilder(transformationFound).build(), sender: nil)
-//        self.present(CharacterDetailBuilder(characterInfo).build(), animated: true)
     }
 }

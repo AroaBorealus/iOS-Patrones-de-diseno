@@ -20,7 +20,6 @@ final class TransformationsListBuilder {
         let useCase = GetAllTransformationsUseCase()
         let viewModel = TransformationsListModel(useCase, characterId)
         let viewController = TransformationsListViewController(viewModel)
-//        viewController.modalPresentationStyle = .fullScreen
         return viewController
     }
 }
